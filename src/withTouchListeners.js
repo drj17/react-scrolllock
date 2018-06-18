@@ -27,12 +27,12 @@ export default function withTouchListeners(WrappedComponent: ComponentType<*>) {
 
         // Allow scroll on provided target
         if (touchScrollTarget) {
-          touchScrollTarget.addEventListener(
+          touchScrollTarget.current.addEventListener(
             'touchstart',
             preventInertiaScroll,
             this.listenerOptions,
           );
-          touchScrollTarget.addEventListener('touchmove', allowTouchMove, this.listenerOptions);
+          touchScrollTarget.current.addEventListener('touchmove', allowTouchMove, this.listenerOptions);
         }
       }
     }
@@ -47,12 +47,12 @@ export default function withTouchListeners(WrappedComponent: ComponentType<*>) {
         target.removeEventListener('touchmove', preventTouchMove, this.listenerOptions);
 
         if (touchScrollTarget) {
-          touchScrollTarget.removeEventListener(
+          touchScrollTarget.current.removeEventListener(
             'touchstart',
             preventInertiaScroll,
             this.listenerOptions,
           );
-          touchScrollTarget.removeEventListener('touchmove', allowTouchMove, this.listenerOptions);
+          touchScrollTarget.current.removeEventListener('touchmove', allowTouchMove, this.listenerOptions);
         }
       }
     }
